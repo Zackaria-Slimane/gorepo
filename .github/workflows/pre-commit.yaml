@@ -1,0 +1,30 @@
+name: pre-commit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+
+      - name: Set up go
+        uses: actions/setup-go@v3
+
+      - name: Install pre-commit and dependencies
+        run: |
+          pip install pre-commit
+          curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin latest
+
+      - name: Execute pre-commit
+        run: |
+          export PATH="${PATH}:$(go env GOPATH)/bin"
+          pre-commit run --all
