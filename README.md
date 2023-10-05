@@ -1,6 +1,6 @@
 # gorepo
 
-Simple CLI program that gets the open issues and their associated labels from Public GitHub Repositories and returns them in JSON format.
+CLI tool to search and list open issues of Public GitHub Repository in JSON format.
 
 ## Installation
 
@@ -10,11 +10,12 @@ git clone
 ```bash
 cd gorepo
 go install
+```
 
 ## Usage
 
-There is only a single required argument: `-repo`. This must be the canonical name of a GitHub repository in the form of: `owner/repo`.
+Required argument: `-repo`
 
 ```bash
-gh-repo -repo username/reponame
+gh-repo -repo username/repositoryname
 ```
